@@ -31,11 +31,8 @@
             </div>
         </div>
 
-        @include('dashboard.inc.sidebar')
 
-        <div class="section-content-left">
 
-            @include('dashboard.inc.header')
 
             <div class="main-content">
 
