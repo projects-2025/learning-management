@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-     public function index()
+    public function index()
     {
         return view('dashboard.home');
     }
+
     public function login()
     {
         return view('dashboard.pages.auth.login');
     }
 
-
-
     public function loginSubmit(Request $request)
     {
-
-// dd(123);
         $data = [
             'email' => $request->email,
             'password' => $request->password,
@@ -43,5 +41,4 @@ class LoginController extends Controller
 
         return redirect()->route('dashboard.login')->with('success', 'تم تسجيل الخروج بنجاح');
     }
-
 }

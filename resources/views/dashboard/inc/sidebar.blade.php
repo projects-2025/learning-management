@@ -1,6 +1,6 @@
 <div class="section-menu-right">
     <div class="box-logo">
-        <a href="index.html" id="site-logo-inner">
+        <a href="{{route('dashboard.home')}}" id="site-logo-inner">
             <img class="" id="logo_header" alt="" src="{{ asset('assets/dashboard/images/logo/logo.png') }}"
                 data-light="{{ asset('assets/dashboard/images/logo/logo.png') }}">
         </a>
@@ -22,7 +22,7 @@
             <div class="center-item">
                 <ul class="menu-list">
                     <li class="menu-item active">
-                        <a href="index.html" class="active">
+                        <a href="{{route('dashboard.home')}}" class="active">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                     height="24" color="#fff" fill="none">

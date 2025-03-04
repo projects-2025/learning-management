@@ -7,15 +7,13 @@
 @endpush
 
 @section('page-tile')
-    لوحة التحكم | تسجيل دخول المشرف
+    لوحة التحكم | تسجيل الدخول
 @endsection
 
 
 @section('content')
     <div class="bg-cars">
-        {{-- <img class="img-1"
-            src="https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-black-super-car-png-image_11921537.png"
-            alt=""> --}}
+        
         <img class="img-2 w-100"
             src="{{ asset('assets/dashboard/images/logo/logo2.png') }}"
             alt="">
