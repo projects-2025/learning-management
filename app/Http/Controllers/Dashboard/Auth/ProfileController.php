@@ -45,7 +45,13 @@ class ProfileController extends Controller
 
         $data->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'تم تحديث الملف الشخصي بنجاح',
+            'image_url' => storage_public_url($data->image),
+            'name' => $data->name,
+            'email' => $data->email,
+        ]);
     }
 
     public function changePassword()
@@ -75,7 +81,6 @@ class ProfileController extends Controller
         if (!Hash::check($request->old_password, $admin->password)) {
 
             return back()->withErrors(['old_password' => 'كلمة المرور القديمة غير صحيحة'])->withInput();
-            
         }
 
         Admin::whereId($admin->id)->update([
