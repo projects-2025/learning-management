@@ -24,11 +24,14 @@ class Admin extends Authenticatable
 
     static string $STORAGE_DIR = "admins";
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'image'
+    // ];
+    protected $guarded = [];
+
 
     /**
      * The attributes that should be hidden for serialization.

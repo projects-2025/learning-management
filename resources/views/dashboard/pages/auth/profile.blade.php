@@ -95,152 +95,7 @@
 @endsection
 
 @push('js')
-    <script>
-        var chartDom = document.getElementById('chart1');
-        var myChart = echarts.init(chartDom, null, {
-            renderer: 'svg'
-        });
-        var option;
-        option = {
-            tooltip: {
-                trigger: 'item',
-                axisPointer: {
-                    type: 'shadow'
-                },
-                textStyle: {
-                    fontFamily: 'Baloo Bhaijaan 2',
-                    fontSize: '16'
-                }
-            },
-            grid: {
-                top: "9%",
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: [{
-                data: ['مكة', 'الرياض', 'الطائف', 'جدة', 'الدمام'],
-                axisLabel: {
-                    textStyle: {
-                        fontFamily: 'Baloo Bhaijaan 2',
-                        fontSize: '15'
-                    }
-                }
-            }],
-            yAxis: [{
-                type: 'value'
-            }],
-            series: [{
-                name: 'عدد الإعلانات',
-                type: 'bar',
-                itemStyle: {
-                    borderRadius: [20, 20, 0, 0]
-                },
-                barWidth: '25%',
-                data: [{
-                        value: 19,
-                        itemStyle: {
-                            color: '#69F0AE'
-                        }
-                    },
-                    {
-                        value: 38,
-                        itemStyle: {
-                            color: '#FFAB40'
-                        }
-                    },
-                    {
-                        value: 25,
-                        itemStyle: {
-                            color: '#41C4FF'
-                        }
-                    },
-                    {
-                        value: 33,
-                        itemStyle: {
-                            color: '#536DFE'
-                        }
-                    },
-                    {
-                        value: 22,
-                        itemStyle: {
-                            color: '#FF4081'
-                        }
-                    },
-                    {
-                        value: 30,
-                        itemStyle: {
-                            color: '#26A69A'
-                        }
-                    }
-                ]
-            }]
-        };
-        option && myChart.setOption(option);
-    </script>
 
-    <script>
-        var chartDom = document.getElementById('chart2');
-        var myChart = echarts.init(chartDom, null, {
-            renderer: 'svg'
-        });
-        var option;
-        option = {
-            grid: {
-                top: "3%",
-                left: '3%',
-                right: '3%',
-                bottom: '3%',
-            },
-            tooltip: {
-                trigger: 'item',
-                textStyle: {
-                    fontFamily: 'Baloo Bhaijaan 2',
-                    fontSize: '16'
-                }
-            },
-            series: [{
-                name: '',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                itemStyle: {
-                    borderRadius: 8,
-                    borderColor: '#fff',
-                    borderWidth: 4,
-                },
-                label: {
-                    show: false,
-                },
-                labelLine: {
-                    show: false
-                },
-                data: [{
-                        value: 10,
-                        name: 'محمد احمد'
-                    },
-                    {
-                        value: 12,
-                        name: 'مصطفي النجار'
-                    },
-                    {
-                        value: 14,
-                        name: 'عبدالرحمن محمد'
-                    },
-                    {
-                        value: 16,
-                        name: 'صلاح هشام'
-                    },
-                    {
-                        value: 18,
-                        name: 'محمد الدرج'
-                    }
-                ]
-            }]
-        };
-
-        option && myChart.setOption(option);
-    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {
@@ -259,7 +114,7 @@
                 submitButton.prop('disabled', true).text('جاري الحفظ...');
 
                 $.ajax({
-                    url: "{{ route('dashboard.profile.update') }}",
+                    url: "{{ route('dashboard.update.profile') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
@@ -285,16 +140,31 @@
                             text: 'تم تحديث ملفك الشخصي.',
                             confirmButtonText: 'حسنًا'
                         });
+                    }
                     },
                     error: function(xhr) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'خطأ!',
-                            text: 'حدث خطأ أثناء تحديث الملف الشخصي.',
-                            confirmButtonText: 'حاول مرة أخرى'
-                        });
+                if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+
+                    if (errors.name) {
+                        $('.error-name').text(errors.name[0]);
                     }
+                    if (errors.email) {
+                        $('.error-email').text(errors.email[0]);
+                    }
+                    if (errors.image) {
+                        $('.error-image').text(errors.image[0]);
+                    }
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'خطأ!',
+                        text: 'حدث خطأ أثناء تحديث الملف الشخصي.',
+                        confirmButtonText: 'حاول مرة أخرى'
+                    });
+                }
                 });
+
             });
         });
     </script>

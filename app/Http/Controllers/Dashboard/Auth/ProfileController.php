@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Traits\UploadFilesTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Auth\UpdatePasswordRequest;
+use App\Http\Requests\Dashboard\Auth\UpdateProfileRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,21 +19,14 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        $id =  Auth::guard('admin')->id();
-        $profileData = Admin::find($id);
+        $profileData =  Auth::guard('admin')->user();
 
         return view('dashboard.pages.auth.profile', compact('profileData'));
     }
 
-    public function profileUpdate(Request $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
-
-        $id =  Auth::guard('admin')->id();
-        $data = Admin::find($id);
-
-        $data->name = $request->name;
-        $data->email = $request->email;
-
+        $data = Auth::guard('admin')->user() ?? abort(404, 'المستخدم غير موجود.');
 
         if ($request->hasFile('image')) {
             $oldPhotoPath = $data->image;
@@ -39,19 +34,18 @@ class ProfileController extends Controller
                 $this->deleteFile($oldPhotoPath);
             }
 
-            $filePath = $this->uploadImage($request->image, Admin::$STORAGE_DIR);
+            $filePath = $this->uploadImage($request->file('image'), Admin::$STORAGE_DIR);
             $data->image = $filePath;
         }
 
-        $data->save();
+        $updatedData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'image' => $data->image
+        ];
+            $data->update($updatedData);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'تم تحديث الملف الشخصي بنجاح',
-            'image_url' => storage_public_url($data->image),
-            'name' => $data->name,
-            'email' => $data->email,
-        ]);
+            return response()->json(['success' => true, 'message' => 'تم تحديث الملف الشخصي بنجاح!']);
     }
 
     public function changePassword()
@@ -61,22 +55,9 @@ class ProfileController extends Controller
         return  view('dashboard.pages.auth.change-password', compact('profileData'));
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
         $admin = Auth::guard('admin')->user();
-        $messages = [
-            'old_password.required' => 'حقل كلمة المرور القديمة مطلوب.',
-            'new_password.required' => 'حقل كلمة المرور الجديدة مطلوب.',
-            'password_confirmation.required' => 'يرجى تأكيد كلمة المرور الجديدة.',
-            'password_confirmation.same' => 'كلمة المرور الجديدة غير متطابقة.',
-        ];
-
-        // Validate request with custom messages
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'password_confirmation' => 'required|same:new_password',
-        ], $messages);
 
         if (!Hash::check($request->old_password, $admin->password)) {
 
@@ -86,7 +67,6 @@ class ProfileController extends Controller
         Admin::whereId($admin->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
-
 
         return back()->with('success', 'تم تحديث كلمة المرور بنجاح');
     }

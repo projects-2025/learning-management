@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Auth\LoginRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class AuthController extends Controller
         return view('dashboard.pages.auth.login');
     }
 
-    public function loginSubmit(Request $request)
+    public function loginSubmit(LoginRequest $request)
     {
         $data = [
             'email' => $request->email,
