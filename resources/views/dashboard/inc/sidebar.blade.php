@@ -62,8 +62,8 @@
                                 </a>
                             </li>
                             <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">المستخدمين</div>
+                                <a href="{{route('dashboard.admins.index')}}" class="">
+                                    <div class="text">ادارة المشرفين</div>
                                 </a>
                             </li>
                         </ul>
@@ -301,5 +301,4 @@
             </div>
         </div>
     </div>
-    <img class="gif-img" src="{{ asset('assets/dashboard/images/logo/logo3.png') }}" alt="">
 </div>

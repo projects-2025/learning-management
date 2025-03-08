@@ -9,8 +9,7 @@
     @include('dashboard.inc.metas')
 
     @include('dashboard.inc.links')
-
-    @stack('css')
+    
 </head>
 
 <body class="body">
@@ -49,8 +48,6 @@
 
     <!-- Javascript -->
     @include('dashboard.inc.scripts')
-
-    @stack('js')
 
 </body>
 

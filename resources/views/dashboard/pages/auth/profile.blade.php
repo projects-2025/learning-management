@@ -36,7 +36,8 @@
                 </div>
             </div>
             <div class="wg-box">
-                <form id="profileUpdateForm" enctype="multipart/form-data">
+                <form id="profileUpdateForm" action="{{ route('dashboard.update.profile') }}" method="POST"
+                    enctype="multipart/form-data">
 
                     @csrf
 
@@ -62,7 +63,7 @@
                         <div class="col-6">
                             <fieldset class="mb-24">
                                 <div class="body-title mb-5"> الصورة الشخصية <span class="tf-color-1"></span></div>
-                                <input class="form-control" type="file" name="image" id="image">
+                                <input class="form-control" type="file" name="image" id="image" accept="image/*">
                             </fieldset>
                             <fieldset class="mb-3">
 
@@ -95,77 +96,32 @@
 @endsection
 
 @push('js')
-
     <script type="text/javascript">
         $(document).ready(function() {
+
             $('#image').change(function(e) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
+                };
+                reader.readAsDataURL(e.target.files[0]);
             });
 
             $('#profileUpdateForm').on('submit', function(e) {
-                e.preventDefault();
-
-                var formData = new FormData(this);
-                var submitButton = $('#saveProfileBtn');
-                submitButton.prop('disabled', true).text('جاري الحفظ...');
-
-                $.ajax({
-                    url: "{{ route('dashboard.update.profile') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    beforeSend: function() {
-                        Swal.fire({
-                            title: 'جارٍ التحديث...',
-                            text: 'يرجى الانتظار حتى يتم حفظ التغييرات',
-                            showConfirmButton: false,
-                            allowOutsideClick: false,
-                            willOpen: () => {
-                                Swal.showLoading();
-                            }
-                        });
-                    },
+                const callback = {
                     success: function(response) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'تم التحديث بنجاح!',
-                            text: 'تم تحديث ملفك الشخصي.',
-                            confirmButtonText: 'حسنًا'
+                            title: 'تم تحديث الملف الشخصي!',
+                            text: 'تم تحديث معلومات ملفك الشخصي بنجاح.',
+                            confirmButtonText: 'موافق'
                         });
                     }
-                    },
-                    error: function(xhr) {
-                if (xhr.status === 422) {
-                    var errors = xhr.responseJSON.errors;
-
-                    if (errors.name) {
-                        $('.error-name').text(errors.name[0]);
-                    }
-                    if (errors.email) {
-                        $('.error-email').text(errors.email[0]);
-                    }
-                    if (errors.image) {
-                        $('.error-image').text(errors.image[0]);
-                    }
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'خطأ!',
-                        text: 'حدث خطأ أثناء تحديث الملف الشخصي.',
-                        confirmButtonText: 'حاول مرة أخرى'
-                    });
-                }
-                });
-
+                };
+                submitForm(this, e, callback);
             });
         });
     </script>
+
+
 @endpush

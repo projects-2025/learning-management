@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('123456789'),
                 'email_verified_at' => Carbon::now(),
+                'image' =>  'default.jpg',
             ],
 
         ]);

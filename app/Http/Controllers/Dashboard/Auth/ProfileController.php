@@ -16,7 +16,6 @@ class ProfileController extends Controller
 {
     use UploadFilesTrait;
 
-
     public function profile()
     {
         $profileData =  Auth::guard('admin')->user();
@@ -33,7 +32,6 @@ class ProfileController extends Controller
             if (!empty($oldPhotoPath)) {
                 $this->deleteFile($oldPhotoPath);
             }
-
             $filePath = $this->uploadImage($request->file('image'), Admin::$STORAGE_DIR);
             $data->image = $filePath;
         }
@@ -43,9 +41,9 @@ class ProfileController extends Controller
             'email' => $request->email,
             'image' => $data->image
         ];
-            $data->update($updatedData);
+        $data->update($updatedData);
 
-            return response()->json(['success' => true, 'message' => 'تم تحديث الملف الشخصي بنجاح!']);
+        return response()->json(['success' => true, 'message' => 'تم تحديث الملف الشخصي بنجاح!']);
     }
 
     public function changePassword()
@@ -58,11 +56,6 @@ class ProfileController extends Controller
     public function updatePassword(UpdatePasswordRequest $request)
     {
         $admin = Auth::guard('admin')->user();
-
-        if (!Hash::check($request->old_password, $admin->password)) {
-
-            return back()->withErrors(['old_password' => 'كلمة المرور القديمة غير صحيحة'])->withInput();
-        }
 
         Admin::whereId($admin->id)->update([
             'password' => Hash::make($request->new_password)

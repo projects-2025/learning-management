@@ -23,9 +23,9 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:admins,email,' . Auth::guard('admin')->id(),
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:admins,email,' . Auth::guard('admin')->id(),
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -47,5 +47,4 @@ class UpdateProfileRequest extends FormRequest
             'image.max' => 'يجب ألا يتجاوز حجم الصورة 2 ميغابايت.',
         ];
     }
-
 }

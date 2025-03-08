@@ -5,6 +5,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/css/bootstrap.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/css/bootstrap-select.min.css') }}">
-<!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css"> -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/css/microtip.min.css') }}">
+
+{{-- Datatables --}}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+{{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> --}}
+{{-- Datatables --}}
+
+
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/dashboard/css/style.css') }}">
+
+@stack('css')

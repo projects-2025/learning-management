@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="bg-cars">
-        
+
         <img class="img-2 w-100"
             src="{{ asset('assets/dashboard/images/logo/logo2.png') }}"
             alt="">
@@ -43,7 +43,7 @@
                     @csrf
 
                     <fieldset class="email mb-1">
-                        <div class="body-title mb-5">البريد الالكتروني <span class="tf-color-1">*</span></div>
+                        <div class="body-title mb-5">البريد الالكتروني </div>
                         <input class="flex-grow @error('email') is-invalid @enderror" type="email"  placeholder="اكتب البريد الالكتروني هنا ..." name="email"
                              value="{{ old('email')}}">
                              @error('email')
@@ -52,7 +52,7 @@
                     </fieldset>
 
                     <fieldset class="password">
-                        <div class="body-title mb-5">كلمة المرور <span class="tf-color-1">*</span></div>
+                        <div class="body-title mb-5">كلمة المرور </div>
                         <div class="password-box mb-1 mt-2">
                             <input class="password-input @error('password') is-invalid @enderror" type="password"  placeholder="اكتب كلمة المرور هنا ..."
                                 name="password" >

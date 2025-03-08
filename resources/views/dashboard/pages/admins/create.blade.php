@@ -7,18 +7,19 @@
 @endpush
 
 @section('page-tile')
-    لوحة التحكم | حسابي
+    لوحة التحكم | ادارة المشرفين
 @endsection
+
 
 @section('content')
     <div class="main-content-inner">
         <div class="main-content-wrap">
             <div class="header-page">
                 <div class="title-page">
-                    <h3>حسابي</h3>
+                    <h3>اضافة مشرف</h3>
                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap6">
                         <li>
-                            <a href="index.html">
+                            <a href="{{ route('dashboard.home') }}">
                                 <div class="text-tiny">الرئيسية</div>
                             </a>
                         </li>
@@ -30,25 +31,51 @@
                             </svg>
                         </li>
                         <li>
-                            <div class="text-tiny">تغيير كلمة المرور</div>
+                            <a href="{{ route('dashboard.admins.index') }}">
+                                <div class="text-tiny">ادارة المشرفين</div>
+                            </a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+                                color="#ffffff" fill="none">
+                                <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </li>
+                        <li>
+                            <div class="text-tiny">اضافة مشرف</div>
                         </li>
                     </ul>
                 </div>
             </div>
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
             <div class="wg-box">
-                <form action="{{ route('dashboard.update.password') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.admins.store') }}" method="POST" id="addAdminForm">
 
                     @csrf
+
+                    <div class="row">
+                        <div class="col-6">
+                            <fieldset class="mb-24">
+                                <div class="body-title mb-5">اسم المشرف </div>
+                                <input class="flex-grow" type="text" placeholder="اكتب هنا .." name="name">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <fieldset class="mb-24">
+                                <div class="body-title mb-5">البريد الإلكتروني </div>
+                                <input class="flex-grow" type="text" placeholder="اكتب هنا .." name="email">
+                            </fieldset>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-6">
                             <fieldset class="password mb-24">
-                                <div class="body-title mb-5">كلمة المرور القديمة <span class="tf-color-1"></span></div>
+                                <div class="body-title mb-5">كلمة المرور </div>
                                 <div class="password-box">
                                     <input class="password-input" type="password" placeholder="اكتب كلمة المرور هنا ..."
-                                        name="old_password" required="">
+                                        name="password" required="">
                                     <span class="show-pass">
                                         <svg class="view" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             width="24" height="24" color="#ffffff" fill="none">
@@ -75,55 +102,13 @@
                                         </svg>
                                     </span>
                                 </div>
-                                @error('old_password')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </fieldset>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <fieldset class="password mb-24">
-                                <div class="body-title mb-5">كلمة المرور الجديدة <span class="tf-color-1"></span></div>
-                                <div class="password-box">
-                                    <input class="password-input" type="password" placeholder="اكتب كلمة المرور هنا ..."
-                                        name="new_password" required="">
-                                    <span class="show-pass">
-                                        <svg class="view" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            width="24" height="24" color="#ffffff" fill="none">
-                                            <path d="M2 8C2 8 6.47715 3 12 3C17.5228 3 22 8 22 8" stroke="currentColor"
-                                                stroke-width="1.5" stroke-linecap="round"></path>
-                                            <path
-                                                d="M21.544 13.045C21.848 13.4713 22 13.6845 22 14C22 14.3155 21.848 14.5287 21.544 14.955C20.1779 16.8706 16.6892 21 12 21C7.31078 21 3.8221 16.8706 2.45604 14.955C2.15201 14.5287 2 14.3155 2 14C2 13.6845 2.15201 13.4713 2.45604 13.045C3.8221 11.1294 7.31078 7 12 7C16.6892 7 20.1779 11.1294 21.544 13.045Z"
-                                                stroke="currentColor" stroke-width="1.5"></path>
-                                            <path
-                                                d="M15 14C15 12.3431 13.6569 11 12 11C10.3431 11 9 12.3431 9 14C9 15.6569 10.3431 17 12 17C13.6569 17 15 15.6569 15 14Z"
-                                                stroke="currentColor" stroke-width="1.5"></path>
-                                        </svg>
-                                        <svg class="hide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            width="24" height="24" color="#ffffff" fill="none">
-                                            <path
-                                                d="M19.439 15.439C20.3636 14.5212 21.0775 13.6091 21.544 12.955C21.848 12.5287 22 12.3155 22 12C22 11.6845 21.848 11.4713 21.544 11.045C20.1779 9.12944 16.6892 5 12 5C11.0922 5 10.2294 5.15476 9.41827 5.41827M6.74742 6.74742C4.73118 8.1072 3.24215 9.94266 2.45604 11.045C2.15201 11.4713 2 11.6845 2 12C2 12.3155 2.15201 12.5287 2.45604 12.955C3.8221 14.8706 7.31078 19 12 19C13.9908 19 15.7651 18.2557 17.2526 17.2526"
-                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round"></path>
-                                            <path
-                                                d="M9.85786 10C9.32783 10.53 9 11.2623 9 12.0711C9 13.6887 10.3113 15 11.9289 15C12.7377 15 13.47 14.6722 14 14.1421"
-                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-                                            <path d="M3 3L21 21" stroke="currentColor" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                @error('new_password')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <fieldset class="password mb-24">
-                                <div class="body-title mb-5">تأكيد كلمة المرور <span class="tf-color-1"></span></div>
+                                <div class="body-title mb-5">تأكيد كلمة المرور </div>
                                 <div class="password-box">
                                     <input class="password-input" type="password" placeholder="اكتب كلمة المرور هنا ..."
                                         name="password_confirmation" required="">
@@ -153,13 +138,13 @@
                                         </svg>
                                     </span>
                                 </div>
-                                @error('password_confirmation')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </fieldset>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-6">
+                        </div>
+                    </div>
                     <div class="btm">
                         <button type="submit" class="tf-button style-1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
@@ -185,13 +170,28 @@
 @push('js')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            })
-        })
+            $('#addAdminForm').on('submit', function(e) {
+                const callback = {
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم بنجاح!',
+                            text: 'تمت إضافة المشرف الجديد بنجاح.',
+                            confirmButtonText: 'حسنًا'
+                        }).then((result) => {
+                            if (result.isConfirmed && response.redirect_url) {
+                                window.location.href = response
+                                .redirect_url;
+                            }
+                        });
+
+                        submitButton.prop('disabled', false).text(defaultButtonText || 'حفظ');
+                    }
+                };
+
+                submitForm(this, e, callback);
+            });
+
+        });
     </script>
 @endpush
