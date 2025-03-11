@@ -3,7 +3,7 @@
 <head>
 
     <title>
-        @yield('page-tile', "لوحة التحكم")
+        @yield('page-title', "لوحة التحكم")
     </title>
 
     @include('dashboard.inc.metas')

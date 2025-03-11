@@ -6,7 +6,7 @@
     </style>
 @endpush
 
-@section('page-tile')
+@section('page-title')
     لوحة التحكم | ادارة المشرفين
 @endsection
 
@@ -16,10 +16,10 @@
         <div class="main-content-wrap">
             <div class="header-page">
                 <div class="title-page">
-                    <h3>اضافة مشرف</h3>
+                    <h3>تعديل بيانات المشرف</h3>
                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap6">
                         <li>
-                            <a href="index.html">
+                            <a href="{{ route('dashboard.home') }}">
                                 <div class="text-tiny">الرئيسية</div>
                             </a>
                         </li>
@@ -31,7 +31,7 @@
                             </svg>
                         </li>
                         <li>
-                            <a href="users.html">
+                            <a href="{{ route('dashboard.admins.index') }}">
                                 <div class="text-tiny">ادارة المشرفين</div>
                             </a>
                         </li>
@@ -43,7 +43,7 @@
                             </svg>
                         </li>
                         <li>
-                            <div class="text-tiny">اضافة مشرف</div>
+                            <div class="text-tiny">تعديل بيانات المشرف</div>
                         </li>
                     </ul>
                 </div>
@@ -219,18 +219,13 @@
                             confirmButtonText: 'حسنًا'
                         }).then((result) => {
                             if (result.isConfirmed && response.redirect_url) {
-                                window.location.href = response
-                                    .redirect_url;
+                                window.location.href = response.redirect_url;
                             }
                         });
-
-                        submitButton.prop('disabled', false).text(defaultButtonText || 'حفظ');
                     }
                 };
-
                 submitForm(this, e, callback);
             });
-
         });
     </script>
 @endpush

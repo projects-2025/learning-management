@@ -6,7 +6,7 @@
     </style>
 @endpush
 
-@section('page-tile')
+@section('page-title')
     لوحة التحكم | حسابي
 @endsection
 

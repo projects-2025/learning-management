@@ -6,7 +6,7 @@
     </style>
 @endpush
 
-@section('page-tile')
+@section('page-title')
     لوحة التحكم | ادارة المشرفين
 @endsection
 
@@ -180,15 +180,11 @@
                             confirmButtonText: 'حسنًا'
                         }).then((result) => {
                             if (result.isConfirmed && response.redirect_url) {
-                                window.location.href = response
-                                .redirect_url;
+                                window.location.href = response.redirect_url;
                             }
                         });
-
-                        submitButton.prop('disabled', false).text(defaultButtonText || 'حفظ');
                     }
                 };
-
                 submitForm(this, e, callback);
             });
 

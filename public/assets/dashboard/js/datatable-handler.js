@@ -27,7 +27,8 @@ function initDataTable(selector, ajax, columns, hiddenPrintColumns = []) {
                 customize: function (win) {
                     hiddenPrintColumns.forEach(index => {
                         $(win.document.body).find(
-                            `table thead tr th:nth-child(${index + 1}), table tbody tr td:nth-child(${index + 1})`
+                            `table thead tr th:nth-child(${index}),
+                             table tbody tr td:nth-child(${index})`
                         ).hide();
                     });
                 }

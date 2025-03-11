@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use App\Http\Controllers\Dashboard\Auth\ProfileController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\Institution\InstitutionController;
+use App\Http\Controllers\Dashboard\Settings\StageController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
@@ -28,8 +30,11 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::resource('admins', AdminController::class)->except('show');
         Route::post('/admins/change-status', [AdminController::class, 'changeStatus'])->name('admins.changeStatus');
 
+        /* institution */
+        Route::resource('institutions', InstitutionController::class)->except('show');
+        Route::post('/institutions/change-status', [InstitutionController::class, 'changeStatus'])->name('institutions.changeStatus');
 
-
-
+        /* settings/stage */
+        Route::resource('stages', StageController::class)->except('show');
     });
 });

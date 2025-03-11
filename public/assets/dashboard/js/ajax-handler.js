@@ -83,11 +83,13 @@ function submitForm(that, event, callback = {}) {
         data: formData,
         processData: false,
         contentType: false,
+        dataType: 'json',
         beforeSend: finalCallbacks.beforeSend,
         success: finalCallbacks.success,
         error: finalCallbacks.error
     });
 }
+
 function deleteItem(url, tableId, successMessage) {
     Swal.fire({
         title: 'هل أنت متأكد؟',
@@ -117,7 +119,7 @@ function deleteItem(url, tableId, successMessage) {
                             icon: 'success',
                             confirmButtonText: 'موافق'
                         }).then(() => {
-                            location.reload(); 
+                            location.reload();
                         });
                     } else {
                         Swal.fire({

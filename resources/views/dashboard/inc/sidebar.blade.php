@@ -21,8 +21,8 @@
         <div class="center">
             <div class="center-item">
                 <ul class="menu-list">
-                    <li class="menu-item active">
-                        <a href="{{route('dashboard.home')}}" class="active">
+                    <li class="menu-item">
+                        <a href="{{route('dashboard.home')}}" class="">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                     height="24" color="#fff" fill="none">
@@ -37,7 +37,7 @@
                             <div class="text">الرئيسية</div>
                         </a>
                     </li>
-                    <li class="menu-item has-children">
+                    <li class="menu-item has-children {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-item-button">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
@@ -53,22 +53,17 @@
                                         stroke-linejoin="round" />
                                 </svg>
                             </div>
-                            <div class="text">الصلاحيات</div>
+                            <div class="text">المستخدمين</div>
                         </a>
-                        <ul class="sub-menu">
+                        <ul class="sub-menu {{ request()->routeIs('dashboard.admins.index') ? 'd-block' : '' }}">
                             <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">المجموعات</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="{{route('dashboard.admins.index')}}" class="">
+                                <a href="{{route('dashboard.admins.index')}}" class="{{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}">
                                     <div class="text">ادارة المشرفين</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item has-children">
+                    <li class="menu-item has-children {{ request()->routeIs('dashboard.stages.index') ? 'active' : '' }}">
                         <a href="javascript:void(0);" class="menu-item-button">
                             <div class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
@@ -83,220 +78,29 @@
                             </div>
                             <div class="text">الإعدادات</div>
                         </a>
-                        <ul class="sub-menu">
+
+                        <ul class="sub-menu {{ request()->routeIs('dashboard.stages.index') ? 'd-block' : '' }}">
                             <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الماركات الرئيسية</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الأنواع الفرعية</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">المناطق</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">المدن</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">العملات</div>
+                                 <a href="{{ route('dashboard.stages.index') }}" class="{{ request()->routeIs('dashboard.stages.index') ? 'active' : '' }}">
+                                    <div class="text"> المراحل</div>
                                 </a>
                             </li>
                         </ul>
+
                     </li>
-                    <li class="menu-item has-children">
-                        <a href="javascript:void(0);" class="menu-item-button">
+
+                    <li class="menu-item {{ request()->routeIs('dashboard.institutions.index') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard.institutions.index') }}" class="menu-item-button">
                             <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                    height="24" color="#ffffff" fill="none">
-                                    <circle cx="7.5" cy="7.5" r="1.5" stroke="currentColor"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
-                                        stroke="currentColor" stroke-width="1.5" />
-                                    <path d="M5 21C9.37246 15.775 14.2741 8.88406 21.4975 13.5424"
-                                        stroke="currentColor" stroke-width="1.5" />
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-buildings" viewBox="0 0 16 16">
+                                    <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022M6 8.694 1 10.36V15h5zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5z"/>
+                                    <path d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z"/>
+                                  </svg>
                             </div>
-                            <div class="text">الإعلانات</div>
+                            <div class="text"> ادارة المعاهد </div>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الإعلانات المميزة</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الإعلانات العادية</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">إضافة اعلان سيارة</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <li class="menu-item has-children">
-                        <a href="javascript:void(0);" class="menu-item-button">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                    height="24" color="#ffffff" fill="none">
-                                    <path
-                                        d="M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z"
-                                        stroke="currentColor" stroke-width="1.5" />
-                                    <path d="M15 11C17.2091 11 19 9.20914 19 7C19 4.79086 17.2091 3 15 3"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M11 14H7C4.23858 14 2 16.2386 2 19C2 20.1046 2.89543 21 4 21H14C15.1046 21 16 20.1046 16 19C16 16.2386 13.7614 14 11 14Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                    <path
-                                        d="M17 14C19.7614 14 22 16.2386 22 19C22 20.1046 21.1046 21 20 21H18.5"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="text">العضويات</div>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الأعضاء المميزين</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الأعضاء العاديين</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">إضافة عضوية</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item has-children">
-                        <a href="javascript:void(0);" class="menu-item-button">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                    height="24" color="#ffffff" fill="none">
-                                    <path d="M2.5 12L4.5 13" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M21.5 12.5L19.5 13" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M8 17.5L8.24567 16.8858C8.61101 15.9725 8.79368 15.5158 9.17461 15.2579C9.55553 15 10.0474 15 11.0311 15H12.9689C13.9526 15 14.4445 15 14.8254 15.2579C15.2063 15.5158 15.389 15.9725 15.7543 16.8858L16 17.5"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M2 17V19.882C2 20.2607 2.24075 20.607 2.62188 20.7764C2.86918 20.8863 3.10538 21 3.39058 21H5.10942C5.39462 21 5.63082 20.8863 5.87812 20.7764C6.25925 20.607 6.5 20.2607 6.5 19.882V18"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M17.5 18V19.882C17.5 20.2607 17.7408 20.607 18.1219 20.7764C18.3692 20.8863 18.6054 21 18.8906 21H20.6094C20.8946 21 21.1308 20.8863 21.3781 20.7764C21.7592 20.607 22 20.2607 22 19.882V17"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path d="M20 8.5L21 8" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M4 8.5L3 8" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M4.5 9L5.5883 5.73509C6.02832 4.41505 6.24832 3.75503 6.7721 3.37752C7.29587 3 7.99159 3 9.38304 3H14.617C16.0084 3 16.7041 3 17.2279 3.37752C17.7517 3.75503 17.9717 4.41505 18.4117 5.73509L19.5 9"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                    <path
-                                        d="M4.5 9H19.5C20.4572 10.0135 22 11.4249 22 12.9996V16.4702C22 17.0407 21.6205 17.5208 21.1168 17.5875L18 18H6L2.88316 17.5875C2.37955 17.5208 2 17.0407 2 16.4702V12.9996C2 11.4249 3.54279 10.0135 4.5 9Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="text">طلبات السيارات</div>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">طلبات السعر المحدد</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">طلبات بنظام السوم</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item has-children">
-                        <a href="javascript:void(0);" class="menu-item-button">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                    height="24" color="#ffffff" fill="none">
-                                    <path
-                                        d="M4 17.9808V9.70753C4 6.07416 4 4.25748 5.17157 3.12874C6.34315 2 8.22876 2 12 2C15.7712 2 17.6569 2 18.8284 3.12874C20 4.25748 20 6.07416 20 9.70753V17.9808C20 20.2867 20 21.4396 19.2272 21.8523C17.7305 22.6514 14.9232 19.9852 13.59 19.1824C12.8168 18.7168 12.4302 18.484 12 18.484C11.5698 18.484 11.1832 18.7168 10.41 19.1824C9.0768 19.9852 6.26947 22.6514 4.77285 21.8523C4 21.4396 4 20.2867 4 17.9808Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <div class="text">اللوحات المعدنية</div>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الإعلانات المميزة</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">الإعلانات العادية</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">إضافة اعلان لوحة معدنية</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item has-children">
-                        <a href="javascript:void(0);" class="menu-item-button">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                    height="24" color="#ffffff" fill="none">
-                                    <path
-                                        d="M2 13.4286V8H22V13.4286C22 17.4692 22 19.4895 20.6983 20.7447C19.3965 22 17.3014 22 13.1111 22H10.8889C6.69863 22 4.6035 22 3.30175 20.7447C2 19.4895 2 17.4692 2 13.4286Z"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M2 8L2.96154 5.69231C3.70726 3.90257 4.08013 3.0077 4.8359 2.50385C5.59167 2 6.56112 2 8.5 2H15.5C17.4389 2 18.4083 2 19.1641 2.50385C19.9199 3.0077 20.2927 3.90257 21.0385 5.69231L22 8"
-                                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M12 8V2" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                    <path d="M10 12H14" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </div>
-                            <div class="text">طلبات اللوحات</div>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">طلبات السعر المحدد</div>
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#" class="">
-                                    <div class="text">طلبات بنظام السوم</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
                 </ul>
             </div>
         </div>

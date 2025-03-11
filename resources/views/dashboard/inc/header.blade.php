@@ -193,14 +193,10 @@
                         <li>
                             <a href="{{ route('dashboard.change.password') }}" class="user-item">
                                 <div class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
-                                        height="24" color="#ffffff" fill="none">
-                                        <path
-                                            d="M7.02331 5.5C4.59826 7.11238 3 9.86954 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13C21 9.86954 19.4017 7.11238 16.9767 5.5"
-                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M12 2V10" stroke="currentColor" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                                        <path d="M6 10V7C6 4.23858 8.23858 2 11 2H13C15.7614 2 18 4.23858 18 7V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <rect x="4" y="10" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </div>
                                 <div class="body-title-2"> تغيير كلمة السر</div>

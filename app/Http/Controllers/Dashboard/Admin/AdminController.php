@@ -97,7 +97,8 @@ class AdminController extends Controller
             'success' => true,
             'message' => 'تم تحديث بيانات المشرف بنجاح.',
             'redirect_url' => route('dashboard.admins.index')
-        ]);    }
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.
